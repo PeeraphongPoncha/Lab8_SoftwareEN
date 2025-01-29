@@ -1,0 +1,3 @@
+FROM busybox
+CMD echo "Hi there. My work is done. You can run them from my Docker image."
+CMD echo "Peeraphong Poncha 653380143-0"
