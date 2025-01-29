@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Inquiry</title>
+</head>
+
+<body>
+	<div>
+		<h1>Travel Insurance Inquiry</h1>
+		<form name="myform" onsubmit="return validation();" action="Complete.html" method="get">
+			<input type="text" id="firstname" name="firstname" placeholder="First Name"/>
+			<input type="text" id="lastname" name="lastname" placeholder="Last Name"/>
+			<input type="text" id="destination" name="destination" placeholder="Destination"/>
+			<input type="text" id="contactperson" name="contactperson" placeholder="Contact Person"/>
+			<input type="text" id="relationship" name="relationship" placeholder="Relationship"/>
+			<input type="text" id="email" name="email" placeholder="Email"/>
+			<input type="text" id="phone" name="phone" placeholder="Phone No."/>
+			<input type="submit" id="submitButton" value="Submit">
+			<p id="errors"></p>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function validation() { 
+		var firstname = document.myform.firstname.value;
+		var lastname = document.myform.lastname.value;
+		var email = document.myform.email.value;
+		var phone = document.myform.phone.value;
+		var contactperson = document.myform.contactperson.value;
+		
+		var errors = "";
+
+		if (contactperson == "") {
+			errors += "*Please enter a contact person’s name!!<br>";
+		}
+		if (firstname == "" && lastname == "") {
+			errors += "*Please enter a name!!<br>";
+		} else if (firstname == "") {
+			errors += "*Please enter a first name!!<br>";
+		} else if (lastname == "") {
+			errors += "*Please enter a last name!!<br>";
+		}
+		if (email == "") {
+			errors += "*Please enter an email!!<br>";
+		} else {
+			var pattern_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if (!email.match(pattern_email)) {
+				errors += "*Please enter a valid email!!<br>";
+			}
+		}
+		if (phone == "") {
+			errors += "*Please enter a phone number!!<br>";
+		} else {
+			var pattern_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+			if (!phone.match(pattern_phone)) {
+				errors += "*Please enter a valid phone number!!<br>";
+			}
+		}
+
+		if (errors != "") {
+			document.getElementById('errors').innerHTML = errors;
+			return false;
+		}
+	}
+</script>
+
+<style>
+body {
+  font-family: Arial;
+	background: #f2f2f2;
+}
+#errors {
+	text-align: right;
+	color: red;
+}
+h1 {
+	color: #00BCD4;
+  font-weight: lighter;
+	font-size: 28px;
+  margin-bottom: 0;
+}
+
+input[type=text], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #00BCD4;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #607d8b;
+}
+
+div {
+		margin: 2em auto;
+    width: 300px;
+		border-radius: 0 0 2px 2px;    
+		background-color: #ffffff;
+    padding: 18px 50px 40px;
+}
+</style>
+
+</html>
